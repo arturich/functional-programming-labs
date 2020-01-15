@@ -49,7 +49,8 @@ class LambdasLab {
 		for(int val:array) {
 			if(f.test(val)) {
 				result.add(val);
-			}//test
+			}//test2
+			
 		}
 		return result;
 	}
