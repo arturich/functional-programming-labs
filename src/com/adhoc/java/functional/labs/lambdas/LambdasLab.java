@@ -28,17 +28,49 @@ class LambdasLab {
 	}
 	
 	//TODO: rewrite filterOddNumbers to apply Strategy and accept a lambda
+	List<Integer> filterOddNumbers(int[] array, Filter f) {
+		List<Integer> result = new ArrayList<>();
+		for(int val:array) {
+			if(f.test(val)) {
+				result.add(val);
+			}
+		}
+		return result;
+	}
 	//TODO: rewrite filterOddNumbersTest to use the lambda version of filterOddNumbers
+	@Test
+	void filterOddNumbersTestLamda() {
+		List<Integer> result = filterOddNumbers(new int[]{1,1,2,3,5,8,13,21},n->n%2==1);
+		Assertions.assertEquals(6, result.size());
+	}
 	//TODO: rename filterOddNumbers to generalize its functionality, name it "filterNumbers"
-	
+	List<Integer> filterNumbers(int[] array, Filter f) {
+		List<Integer> result = new ArrayList<>();
+		for(int val:array) {
+			if(f.test(val)) {
+				result.add(val);
+			}
+		}
+		return result;
+	}
 	
 	//TODO: complete this test to filter even numbers
 	@Test
 	void filterEvenNumbersTest() {
 		
-		//List<Integer> result = filterNumbers(new int[]{1,1,2,3,5,8,13,21},REPLACE_WITH_LAMBDA);
+		List<Integer> result = filterNumbers(new int[]{1,1,2,3,5,8,13,21},n->n%2==0);
 		
-		//Assertions.assertEquals(2, result.size());
+		Assertions.assertEquals(2, result.size());
+	}
+	
+	interface Filter{
+
+        boolean test(int n);
+        
 	}
 
+                      
+
 }
+
+
