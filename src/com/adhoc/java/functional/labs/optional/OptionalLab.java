@@ -1,8 +1,10 @@
 package com.adhoc.java.functional.labs.optional;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
+
 
 public class OptionalLab {
 
@@ -11,7 +13,7 @@ public class OptionalLab {
 	@Test
 	void refactorToBeSafeTest() {
 		Book book = Book.getDummyBook();
-		String summary = book.getChapter(10).getSummary().toUpperCase();
+		String summary = book.getChapter(10).map(mapper)getSummary().toUpperCase();
 
 	}
 }
@@ -29,24 +31,32 @@ class Book {
 			this.summary = summary;
 		}
 
-		public String getSummary() {
-			return this.summary;
+		public String getSummary() {		
+			
+				return Optional.of(this.summary).orElse("");
+			
 		}
 	}
 
-	public Chapter getChapter(int id) {
-		for (Chapter chapter : chapters) {
+	public Optional<Chapter> getChapter(int id) {		
+		Chapter resultChap = null;
+		for (Chapter chapter : chapters) {				
 			if (chapter.chapterid == id) {
-				return chapter;
+				resultChap =  chapter;
+				break;
 			}
 		}
-		return null;
+		return Optional.ofNullable(resultChap);
 	}
 
 	public static Book getDummyBook() {
 		Book book = new Book();
-		book.chapters = List.of(new Chapter(1, "first chapter"), new Chapter(2, "second chapter"),
-				new Chapter(3, "third chapter"));
+		Optional<Book> bookOp= Optional.of(book);
+		
+		if(bookOp.isPresent()) {
+			book.chapters = List.of(new Chapter(1, "first chapter"), new Chapter(2, "second chapter"),
+					new Chapter(3, "third chapter"));
+		}
 		return book;
 	}
 

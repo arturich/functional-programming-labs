@@ -28,20 +28,20 @@ public class LambdasLab2 {
 	@Test
 	void PredicateTest() {
 		//TODO: replace "REPLACE_WITH_LAMBDA" with a lambda expression to get all the Strings starting with "C", then uncomment bellow lines
-		//Predicate<String> test= REPLACE_WITH_LAMBDA;
-		//Assertions.assertEquals(1,filterStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"},test).size());
+		Predicate<String> test= s -> s.startsWith("C");
+		Assertions.assertEquals(1,filterStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"},test).size());
 		
 		//TODO: replace "REPLACE_WITH_LAMBDA" with a lambda expression to get all the Strings with 5 letter, then uncomment bellow lines
-		//Predicate<String> test= REPLACE_WITH_LAMBDA;
-		//Assertions.assertEquals(4,filterStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"},test).size());
+		Predicate<String> test2= s -> s.length() == 5;
+		Assertions.assertEquals(4,filterStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"},test2).size());
 		
 		//TODO: replace "REPLACE_WITH_LAMBDA" with a lambda expression to get all the Strings with 5 letter that ends in "a", then uncomment bellow lines
-		//Predicate<String> test= REPLACE_WITH_LAMBDA;
-		//Assertions.assertEquals(2,filterStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"},test).size());
+		Predicate<String> test3=s -> s.length() == 5 && s.endsWith("a");
+		Assertions.assertEquals(2,filterStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"},test3).size());
 		
 		//TODO: replace "REPLACE_WITH_LAMBDA" with a lambda expression to get all the Strings that its second character is an "o", then uncomment bellow lines
-		//Predicate<String> test= REPLACE_WITH_LAMBDA;
-		//Assertions.assertEquals(2,filterStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"},test).size());
+		Predicate<String> test4= s->s.substring(1, 1).equals("o");
+		Assertions.assertEquals(2,filterStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"},test).size());
 	}
 	
 	
@@ -54,16 +54,16 @@ public class LambdasLab2 {
 	@Test
 	void ConsumerTest() {
 		//TODO: replace "REPLACE_WITH_LAMBDA" with a lambda expression to print all the Strings, then uncomment bellow lines
-		//Consumer<String> consumer = REPLACE_WITH_LAMBDA;
-		//consumeStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"}, consumer);
+		Consumer<String> consumer = s -> System.out.println(s);
+		consumeStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"}, consumer);
 		
 		//TODO: replace "REPLACE_WITH_LAMBDA" with a lambda expression to print all the Strings on upperCase, then uncomment bellow lines
-		//Consumer<String> consumer = REPLACE_WITH_LAMBDA;
-		//consumeStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"}, consumer);
+		Consumer<String> consumer2 = s -> System.out.println(s.toUpperCase());
+		consumeStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"}, consumer2);
 		
 		//TODO: replace "REPLACE_WITH_LAMBDA" with a lambda expression to print the length of all the Strings like string:lenght, then uncomment bellow lines
-		//Consumer<String> consumer = REPLACE_WITH_LAMBDA;
-		//consumeStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"}, consumer);
+		Consumer<String> consumer3 = s -> System.out.println(s+":"+s.length());
+		consumeStrings(new String[] {"Cori","Jason","Pedro","Maria","Roberto","Raul","Petra"}, consumer3);
 	}
 	
 	static List<People> getSomePeople(){
